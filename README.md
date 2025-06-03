@@ -29,10 +29,6 @@ Cross-Modal-Visual-Search-Engine/
 └── dataset/ 
 └── amazon_products.csv
 ```
-
-
-
-
 ## Technical Overview
 
 1.  **Embedding Generation:**
@@ -114,24 +110,6 @@ Cross-Modal-Visual-Search-Engine/
     *   Build an initial image index from the dataset and save `image_features.pt` and `image_metadata.pkl`.
 *   This initial setup might take a few minutes depending on your system. Subsequent runs will be faster as the model and index will be loaded from disk.
 
-## How to Use the Application
-
-1.  **System Ready:** Once the sidebar shows "System Ready!", the application is initialized.
-2.  **Choose Search Type:**
-    *   **Text Description:** Select this option and type your query (e.g., "red sports car") into the text box.
-    *   **Uploaded Image:** Select this, and an uploader will appear. Choose an image file (JPG, JPEG, PNG) from your computer.
-    *   **Image URL:** Select this and paste a direct URL to an image.
-3.  **Search:** Click the "Search 🔎" button.
-4.  **View Results:** Matching images from the index will be displayed below the query, along with their similarity scores. You can expand "Details" for each image to see its original title and URL.
-5.  **Sidebar Controls:**
-    *   **Add Item to Index:** Expand this section, provide an image URL and an optional title, and click "Add to Index." The new item will be available for future searches.
-    *   **Search Options:**
-        *   **Max Results (Top K):** Adjust the slider to change the number of search results displayed.
-        *   **Result Columns:** Change the number of columns used to display results.
-    *   **Items in Index:** Shows the current count of images in the search index.
-    *   **Clear Search Results & Query:** Clears the current search results and query information from the display.
-    *   **Rebuild Index & Retrain Model:** Deletes the saved model and index files. The system will perform a full re-initialization (training and index building) on the next app interaction or reload. This is useful if you've updated your base dataset (`amazon_products.csv`) or want to force a retrain.
-
 ## Code Explanation
 
 *   **`config.py`**: Centralizes all constants, file paths, and hyperparameters. This makes it easy to tune the system without digging through multiple files.
@@ -161,15 +139,6 @@ Cross-Modal-Visual-Search-Engine/
     *   It calls methods on the `app_instance` (e.g., `search_by_text`, `add_new_item`) based on user interaction.
     *   It displays search results, messages, and system information.
 
-## Future Enhancements
+## Group Members
 
-*   **Improved Text Tokenizer:** Replace the basic hashing tokenizer in `TextEncoder` with a more sophisticated one (e.g., SentencePiece, WordPiece, or a pre-trained tokenizer from libraries like Hugging Face Transformers) for better text understanding.
-*   **Better Pre-trained Models:** Experiment with larger or more specialized pre-trained models for both image (e.g., ResNet50, ViT) and text (e.g., Sentence-BERT) encoders.
-*   **Scalable Indexing:** For very large datasets, replace the in-memory PyTorch tensor index with a dedicated vector database (e.g., FAISS, Milvus, Pinecone) for more efficient similarity search.
-*   **Advanced Training:** Implement a more comprehensive training regime with larger datasets, data augmentation, and proper validation.
-*   **User Feedback Mechanism:** Allow users to mark results as relevant/irrelevant to potentially fine-tune the model (active learning).
-*   **Batch Image Upload for Indexing:** Allow users to upload multiple images or a CSV of image URLs to build/extend the index.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request or open an issue for bugs, feature requests, or improvements.
+Created Ashhad, Xintong, Maaz ACSAI Batch 2023
