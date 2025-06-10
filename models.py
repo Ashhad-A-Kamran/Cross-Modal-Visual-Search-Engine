@@ -16,7 +16,6 @@ device = torch.device('cpu')
 MODEL_PATH = "trained_model.pth"
 
 
-
 # --- ML Code: Dataset, Encoders, System, Minimal Training ---
 class LostFoundDataset(Dataset):
     def __init__(self, df, transform=None):
