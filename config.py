@@ -10,7 +10,7 @@ BEST_MODEL_PATH = "best_trained_model.pth" # Path to save the best model
 IMAGE_INDEX_FEATURES_PATH = "image_features.pt"
 IMAGE_INDEX_METADATA_PATH = "image_metadata.pkl"
 DATA_DIR = "dataset"
-CSV_NAME = "data2.csv" # Make sure this is your larger, good quality dataset
+CSV_NAME = "data2.csv" 
 CSV_PATH = os.path.join(DATA_DIR, CSV_NAME)
 
 # --- Model & Training Parameters (Can be tuned) ---
