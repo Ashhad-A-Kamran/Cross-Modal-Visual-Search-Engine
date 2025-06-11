@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torchvision
-from sentence_transformers import SentenceTransformer # << NEW IMPORT
+from sentence_transformers import SentenceTransformer 
 
 
 from config import device, EMBED_SIZE 
@@ -33,15 +33,11 @@ class TextEncoder(nn.Module):
 
 
   def forward(self, texts):
-    # SBERT expects a list of sentences (strings)
     if not texts or all(not t for t in texts):
-        # Return an empty tensor with the correct embedding dimension
-        return torch.empty((0, self.embed_dim), device=device) # Use self.sbert_model.device if model not explicitly moved to global device
+        return torch.empty((0, self.embed_dim), device=device)
 
-    # Encode texts using SBERT. The model handles tokenization internally.
-    # The output will be on the device the SBERT model is on.
     text_embeddings = self.sbert_model.encode(texts, convert_to_tensor=True, show_progress_bar=False)
     
     # Normalize embeddings
     text_embeddings = torch.nn.functional.normalize(text_embeddings, p=2, dim=1)
-    return text_embeddings.to(device) # Ensure it's on the global device if needed elsewhere
+    return text_embeddings.to(device) 
