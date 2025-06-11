@@ -3,8 +3,8 @@ import torch.nn as nn
 import torchvision
 from sentence_transformers import SentenceTransformer # << NEW IMPORT
 
-# from config import device, EMBED_SIZE, VOCAB_SIZE, MAX_TEXT_LEN # EMBED_SIZE might come from SBERT model
-from config import device, EMBED_SIZE # Keep EMBED_SIZE for ImageEncoder for now, ensure consistency
+
+from config import device, EMBED_SIZE 
 
 class ImageEncoder(nn.Module):
   def __init__(self, embed_size=EMBED_SIZE): # Ensure this embed_size matches TextEncoder's output
@@ -14,9 +14,6 @@ class ImageEncoder(nn.Module):
         self.cnn = torch.hub.load('pytorch/vision', 'resnet18', weights='ResNet18_Weights.DEFAULT' if hasattr(torchvision.models, 'ResNet18_Weights') else 'resnet18', trust_repo=True)
     except Exception:
         self.cnn = torch.hub.load('pytorch/vision', 'resnet18', weights=None, trust_repo=True)
-    
-    # Check if embed_size needs to be adapted or if a projection layer is added
-    # to match the TextEncoder's output dimension if they differ.
     self.cnn.fc = nn.Linear(self.cnn.fc.in_features, embed_size)
 
   def forward(self, images):
